@@ -122,11 +122,9 @@
         .toggle-btn { background: transparent; border: 1px solid transparent; color: var(--text-dim); font-size: 10px; font-weight: 900; cursor: pointer; padding: 4px 8px; border-radius: 6px; }
         .toggle-btn.active { background: #fff; color: #000; }
 
-        /* Stili Facce Minecraft nei Match */
         .match-row-wrapper { display: flex; align-items: center; gap: 10px; }
         .mc-face-small { width: 20px; height: 20px; border-radius: 3px; }
 
-        /* NUOVO: Stile per nascondere le facce vuote e farle apparire con sfumatura */
         .mc-face-small, .mc-face-preview {
             opacity: 0;
             transition: opacity 0.3s ease;
@@ -334,17 +332,14 @@
                 <div class="match-card">
                     <label style="font-size:9px; color:var(--text-dim); font-weight:900; margin-bottom:10px; display:block;">${tierName} FIGHT</label>
                     <div class="match-row-wrapper">
-                        
                         <input type="text" class="s1 input-field" data-tier="${tierName}" style="width:60px; text-align:center" placeholder="10" oninput="update()" onkeydown="handleEnter(event)">
                         <input type="text" class="s2 input-field" style="width:60px; text-align:center" placeholder="0" oninput="update()" onkeydown="handleEnter(event)">
                         <input type="text" class="opp input-field" style="flex:1" placeholder="Avversario" oninput="update(); updateMatchAvatar(this)" onkeydown="handleEnter(event)">
-                        
                         <img src="" class="mc-face-small opp-face" alt="">
                     </div>
                 </div>`;
         }
 
-        // Funzione aggiornata per nascondere l'avatar se il campo è vuoto
         function updateMatchAvatar(inputElement) {
             const name = inputElement.value;
             const cardElement = inputElement.closest('.match-card');
@@ -352,14 +347,13 @@
             
             if (name && name.trim() !== "") {
                 oppFace.src = `https://minotar.net/avatar/${name}/20`;
-                oppFace.style.opacity = '1'; // Mostra l'avatar
+                oppFace.style.opacity = '1';
             } else {
-                oppFace.src = ""; // Rimuove l'src
-                oppFace.style.opacity = '0'; // Nasconde completamente l'avatar
+                oppFace.src = "";
+                oppFace.style.opacity = '0';
             }
         }
 
-        // Funzione aggiornata per gestire l'avatar del giocatore principale nella Preview
         function update() {
             if(!currentTier) return;
             const id = document.getElementById('discordId').value;
@@ -368,10 +362,10 @@
             const faceImgPreview = document.getElementById('mc-face-preview');
             if(name !== "Player" && name.trim() !== "") {
                 faceImgPreview.src = `https://minotar.net/avatar/${name}/32`;
-                faceImgPreview.style.opacity = '1'; // Mostra avatar in preview
+                faceImgPreview.style.opacity = '1';
             } else {
                 faceImgPreview.src = "";
-                faceImgPreview.style.opacity = '0'; // Nasconde avatar in preview
+                faceImgPreview.style.opacity = '0';
             }
 
             const fullTier = currentTier.replace('HT','High Tier ').replace('LT','Low Tier ');
